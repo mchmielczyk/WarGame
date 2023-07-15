@@ -2,9 +2,7 @@
 
 std::vector<std::vector<Point>> MapMaker(const std::string &filename); // Deklaracja funkcji MapMaker do tworzenia mapy
 
-int TypePicker(char c); // Deklaracja funkcji TypePicker do wyboru typu jednostki na podstawie znaku
-
-void StatusReader(const std::string &filename, long &gold, std::vector<Unit *> &PUnits, std::vector<Unit *> &EUnits); // Deklaracja funkcji StatusReader do odczytu stanu jednostek
+void StatusReader(const std::string &filename, long &gold, std::vector<Unit *> &PUnits, std::vector<Unit *> &EUnits,std::vector<Unit *>&Units); // Deklaracja funkcji StatusReader do odczytu stanu jednostek
 
 int main(int argc, char *argv[])
 {
@@ -38,9 +36,10 @@ int main(int argc, char *argv[])
     /////////////////////////////////////////
     std::vector<std::vector<Point>> Map = MapMaker(argv[1]); // Wywołanie funkcji MapMaker do utworzenia mapy
     std::vector<Unit *> PUnits;                              // Wektor wskaźników na jednostki gracza
-    std::vector<Unit *> EUnits;                              // Wektor wskaźników na jednostki przeciwnika
+    std::vector<Unit *> EUnits;                              // Wektor wskaźników na jednostki przeciwnika=
     long gold;
-    StatusReader(argv[2], gold, PUnits, EUnits); // Wektor rozkazów jednostek gracza
+    std::vector<Unit *> Units;
+    StatusReader(argv[2], gold, PUnits, EUnits,Units); // Wektor rozkazów jednostek gracza
     /////////////////////////////////////////
     // int MapSizeX = Map.size();
     // int MapSizeY = Map[0].size();
@@ -56,12 +55,16 @@ int main(int argc, char *argv[])
     //     std::cout << std::endl;
     // }
     /////////////////////////////////////////
-    // Rozkazy.txt
+    // status.txt
     /////////////////////////////////////////
-    for (int i = 0; i < PUnits.size(); i++)
-    {
-        std::cout << PUnits[i]->getS() << " " << PUnits[i]->getT() << " " << PUnits[i]->getID() << " " << PUnits[i]->getX() << " " << PUnits[i]->getY() << " " << PUnits[i]->getW() << " " << PUnits[i]->getB() << " " << PUnits[i]->getP() << " " << PUnits[i]->getK() << " " << PUnits[i]->getZ() << std::endl;
-    }
+    //for (int i = 0; i < PUnits.size(); i++)
+    //{
+    //    std::cout <<"Udane jednostki z"<<PUnits.size()<<": "<< PUnits[i]->getS() << " " << PUnits[i]->getT() << " " << PUnits[i]->getID() << " " << PUnits[i]->getX() << " " << PUnits[i]->getY() << " " << PUnits[i]->getW() << " " << PUnits[i]->getB() << " " << PUnits[i]->getP() << " " << PUnits[i]->getK() << " " << PUnits[i]->getZ() << std::endl;
+    //}
+    //for (int i = 0; i < EUnits.size(); i++)
+    //{
+    //    std::cout <<"Udane jednostki z"<<EUnits.size()<<": "<< EUnits[i]->getS() << " " << EUnits[i]->getT() << " " << EUnits[i]->getID() << " " << EUnits[i]->getX() << " " << EUnits[i]->getY() << " " << EUnits[i]->getW() << " " << EUnits[i]->getB() << " " << EUnits[i]->getP() << " " << EUnits[i]->getK() << " " << EUnits[i]->getZ() << std::endl;
+    //}
     /////////////////////////////////////////
     return 0;
 }
@@ -102,7 +105,7 @@ std::vector<std::vector<Point>> MapMaker(const std::string &filename)
 }
 
 // Definicja funkcji StatusReader do odczytu stanu jednostek na podstawie pliku
-void StatusReader(const std::string &filename, long &gold, std::vector<Unit *> &PUnits, std::vector<Unit *> &EUnits)
+void StatusReader(const std::string &filename, long &gold, std::vector<Unit *> &PUnits, std::vector<Unit *> &EUnits,std::vector<Unit *> &Units)
 {
     std::ifstream fin(filename, std::ios::in);
 
@@ -112,82 +115,54 @@ void StatusReader(const std::string &filename, long &gold, std::vector<Unit *> &
         fin.clear();
         exit(EXIT_FAILURE);
     }
+    fin >> gold;
     char side, type, build;
     int x, y, hp, id;
-    fin >> gold;
     while (fin >> side >> type >> id >> x >> y >> hp)
     {
-        switch (side)
-        {
-        case 'P':
             switch (type)
             {
             case 'K':
-                PUnits.push_back(new Unit(side, type, id, x, y, hp, '5' - 0, 5, 400, 1));
+                Units.push_back(new Unit(side, type, id, x, y, hp, '5' - 0, 5, 400, 1));
                 break;
             case 'S':
-                PUnits.push_back(new Unit(side, type, id, x, y, hp, '3' - 0, 2, 250, 1));
+                Units.push_back(new Unit(side, type, id, x, y, hp, '3' - 0, 2, 250, 1));
                 break;
             case 'A':
-                PUnits.push_back(new Unit(side, type, id, x, y, hp, '3' - 0, 2, 250, 5));
+                Units.push_back(new Unit(side, type, id, x, y, hp, '3' - 0, 2, 250, 5));
                 break;
             case 'P':
-                PUnits.push_back(new Unit(side, type, id, x, y, hp, '3' - 0, 2, 200, 2));
+                Units.push_back(new Unit(side, type, id, x, y, hp, '3' - 0, 2, 200, 2));
                 break;
             case 'R':
-                PUnits.push_back(new Unit(side, type, id, x, y, hp, '4' - 0, 2, 500, 1));
+                Units.push_back(new Unit(side, type, id, x, y, hp, '4' - 0, 2, 500, 1));
                 break;
             case 'C':
-                PUnits.push_back(new Unit(side, type, id, x, y, hp, '6' - 0, 2, 800, 7));
+                Units.push_back(new Unit(side, type, id, x, y, hp, '6' - 0, 2, 800, 7));
                 break;
             case 'W':
-                PUnits.push_back(new Unit(side, type, id, x, y, hp, '2' - 0, 2, 100, 1));
+                Units.push_back(new Unit(side, type, id, x, y, hp, '2' - 0, 2, 100, 1));
                 break;
             case 'B':
                 fin >> build;
-                PUnits.push_back(new Unit(side, type, id, x, y, hp, build, 0, INT16_MAX, 0));
+                Units.push_back(new Unit(side, type, id, x, y, hp, build, 0, INT16_MAX, 0));
                 break;
             default:
-                std::cerr << "Blad przy wyborze jednostki: " << type << '\n';
+                std::cerr << "Blad przy wyborze jednostki\n";
                 break;
             }
-        case 'E':
-            switch (type)
-            {
-            case 'K':
-                EUnits.push_back(new Unit(side, type, id, x, y, hp, '5' - 0, 5, 400, 1));
-                break;
-            case 'S':
-                EUnits.push_back(new Unit(side, type, id, x, y, hp, '3' - 0, 2, 250, 1));
-                break;
-            case 'A':
-                EUnits.push_back(new Unit(side, type, id, x, y, hp, '3' - 0, 2, 250, 5));
-                break;
-            case 'P':
-                EUnits.push_back(new Unit(side, type, id, x, y, hp, '3' - 0, 2, 200, 2));
-                break;
-            case 'R':
-                EUnits.push_back(new Unit(side, type, id, x, y, hp, '4' - 0, 2, 500, 1));
-                break;
-            case 'C':
-                EUnits.push_back(new Unit(side, type, id, x, y, hp, '6' - 0, 2, 800, 7));
-                break;
-            case 'W':
-                EUnits.push_back(new Unit(side, type, id, x, y, hp, '2' - 0, 2, 100, 1));
-                break;
-            case 'B':
-                fin >> build;
-                EUnits.push_back(new Unit(side, type, id, x, y, hp, build, 0, INT16_MAX, 0));
-                break;
-            default:
-                std::cerr << "Blad przy wyborze jednostki: " << type << '\n';
-                break;
-            }
-        default:
-            std::cerr << "Blad przy odczycie pliku: status.txt: " << side << '\n';
-            break;
-        }
+    }
+    for (int i = 0; i < Units.size(); i++)
+    {
+        if (Units[i]->getS() == 'P')
+            PUnits.push_back(Units[i]);
+        else
+            EUnits.push_back(Units[i]);
     }
 
     fin.clear();
+}
+void OrdersProcessor(const std::string &filename, std::vector<Unit *> &PUnits, std::vector<Unit *> &EUnits)
+{
+
 }
