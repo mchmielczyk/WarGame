@@ -197,6 +197,10 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Project>{45F5C0B3-F3EF-3DDA-8196-31B5B09EFCC4}</Project>
       <Name>gtest_main</Name>
     </ProjectReference>
+    <ProjectReference Include="D:\WarGame\build\test\tests.vcxproj">
+      <Project>{6EF5042B-DFAE-327C-BD33-5D867981DF95}</Project>
+      <Name>tests</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

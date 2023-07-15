@@ -17,5 +17,6 @@ D:/WarGame/build/googletest/googletest/CMakeFiles/gtest_main.dir
 D:/WarGame/build/googletest/googletest/CMakeFiles/RUN_TESTS.dir
 D:/WarGame/build/googletest/googletest/CMakeFiles/INSTALL.dir
 D:/WarGame/build/googletest/googletest/CMakeFiles/ALL_BUILD.dir
+D:/WarGame/build/test/CMakeFiles/tests.dir
 D:/WarGame/build/test/CMakeFiles/RUN_TESTS.dir
 D:/WarGame/build/test/CMakeFiles/INSTALL.dir
