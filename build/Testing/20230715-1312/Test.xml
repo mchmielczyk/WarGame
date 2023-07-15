@@ -24,36 +24,11 @@
 	ProcessorClockFrequency="3696"
 	>
 	<Testing>
-		<StartDateTime>Jul 15 20:42 [NON-UTF-8-BYTE-0x8C]rodkowoeuropejski czas letni</StartDateTime>
-		<StartTestTime>1689446521</StartTestTime>
-		<TestList>
-			<Test>./test/tests</Test>
-		</TestList>
-		<Test Status="notrun">
-			<Name>tests</Name>
-			<Path>./test</Path>
-			<FullName>./test/tests</FullName>
-			<FullCommandLine></FullCommandLine>
-			<Results>
-				<NamedMeasurement type="numeric/double" name="Processors">
-					<Value>1</Value>
-				</NamedMeasurement>
-				<NamedMeasurement type="text/string" name="Completion Status">
-					<Value>Unable to find executable</Value>
-				</NamedMeasurement>
-				<NamedMeasurement type="text/string" name="Command Line">
-					<Value></Value>
-				</NamedMeasurement>
-				<NamedMeasurement type="text/string" name="Environment">
-					<Value></Value>
-				</NamedMeasurement>
-				<Measurement>
-					<Value>Unable to find executable: D:/WarGame/build/test/Debug/tests.exe</Value>
-				</Measurement>
-			</Results>
-		</Test>
-		<EndDateTime>Jul 15 20:42 [NON-UTF-8-BYTE-0x8C]rodkowoeuropejski czas letni</EndDateTime>
-		<EndTestTime>1689446521</EndTestTime>
+		<StartDateTime>Jul 15 22:06 [NON-UTF-8-BYTE-0x8C]rodkowoeuropejski czas letni</StartDateTime>
+		<StartTestTime>1689451564</StartTestTime>
+		<TestList/>
+		<EndDateTime>Jul 15 22:06 [NON-UTF-8-BYTE-0x8C]rodkowoeuropejski czas letni</EndDateTime>
+		<EndTestTime>1689451564</EndTestTime>
 		<ElapsedMinutes>0</ElapsedMinutes>
 	</Testing>
 </Site>

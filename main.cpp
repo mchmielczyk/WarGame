@@ -2,7 +2,11 @@
 
 std::vector<std::vector<Point>> MapMaker(const std::string &filename); // Deklaracja funkcji MapMaker do tworzenia mapy
 
-void StatusReader(const std::string &filename, long &gold, std::vector<Unit *> &PUnits, std::vector<Unit *> &EUnits,std::vector<Unit *>&Units); // Deklaracja funkcji StatusReader do odczytu stanu jednostek
+void StatusReader(const std::string &filename, long &gold, std::vector<Unit *> &PUnits, std::vector<Unit *> &EUnits, std::vector<Unit *> &Units); // Deklaracja funkcji StatusReader do odczytu stanu jednostek
+
+void OrdersProcessor(const std::string &filename, std::vector<Unit *> &PUnits, std::vector<Unit *> &EUnits, std::vector<Unit *> &Units);
+
+Unit *UnitFinder(std::vector<Unit *> &Units, int id);
 
 int main(int argc, char *argv[])
 {
@@ -39,7 +43,8 @@ int main(int argc, char *argv[])
     std::vector<Unit *> EUnits;                              // Wektor wskaźników na jednostki przeciwnika=
     long gold;
     std::vector<Unit *> Units;
-    StatusReader(argv[2], gold, PUnits, EUnits,Units); // Wektor rozkazów jednostek gracza
+    StatusReader(argv[2], gold, PUnits, EUnits, Units); // Wektor rozkazów jednostek gracza
+    OrdersProcessor(argv[3], PUnits, EUnits, Units);
     /////////////////////////////////////////
     // int MapSizeX = Map.size();
     // int MapSizeY = Map[0].size();
@@ -57,14 +62,18 @@ int main(int argc, char *argv[])
     /////////////////////////////////////////
     // status.txt
     /////////////////////////////////////////
-    //for (int i = 0; i < PUnits.size(); i++)
+    // for (int i = 0; i < PUnits.size(); i++)
     //{
-    //    std::cout <<"Udane jednostki z"<<PUnits.size()<<": "<< PUnits[i]->getS() << " " << PUnits[i]->getT() << " " << PUnits[i]->getID() << " " << PUnits[i]->getX() << " " << PUnits[i]->getY() << " " << PUnits[i]->getW() << " " << PUnits[i]->getB() << " " << PUnits[i]->getP() << " " << PUnits[i]->getK() << " " << PUnits[i]->getZ() << std::endl;
-    //}
-    //for (int i = 0; i < EUnits.size(); i++)
+    //     std::cout <<"Udane jednostki z"<<PUnits.size()<<": "<< PUnits[i]->getS() << " " << PUnits[i]->getT() << " " << PUnits[i]->getID() << " " << PUnits[i]->getX() << " " << PUnits[i]->getY() << " " << PUnits[i]->getW() << " " << PUnits[i]->getB() << " " << PUnits[i]->getP() << " " << PUnits[i]->getK() << " " << PUnits[i]->getZ() << std::endl;
+    // }
+    // for (int i = 0; i < EUnits.size(); i++)
     //{
-    //    std::cout <<"Udane jednostki z"<<EUnits.size()<<": "<< EUnits[i]->getS() << " " << EUnits[i]->getT() << " " << EUnits[i]->getID() << " " << EUnits[i]->getX() << " " << EUnits[i]->getY() << " " << EUnits[i]->getW() << " " << EUnits[i]->getB() << " " << EUnits[i]->getP() << " " << EUnits[i]->getK() << " " << EUnits[i]->getZ() << std::endl;
-    //}
+    //     std::cout <<"Udane jednostki z"<<EUnits.size()<<": "<< EUnits[i]->getS() << " " << EUnits[i]->getT() << " " << EUnits[i]->getID() << " " << EUnits[i]->getX() << " " << EUnits[i]->getY() << " " << EUnits[i]->getW() << " " << EUnits[i]->getB() << " " << EUnits[i]->getP() << " " << EUnits[i]->getK() << " " << EUnits[i]->getZ() << std::endl;
+    // }
+    // for(int i=0;i<Units.size();i++)
+    //{
+    //     std::cout<<Units[i]->getS()<<" "<<Units[i]->getT()<<" "<<Units[i]->getID()<<" "<<Units[i]->getX()<<" "<<Units[i]->getY()<<" "<<Units[i]->getW()<<" "<<Units[i]->getB()<<" "<<Units[i]->getP()<<" "<<Units[i]->getK()<<" "<<Units[i]->getZ()<<std::endl;
+    // }
     /////////////////////////////////////////
     return 0;
 }
@@ -105,7 +114,7 @@ std::vector<std::vector<Point>> MapMaker(const std::string &filename)
 }
 
 // Definicja funkcji StatusReader do odczytu stanu jednostek na podstawie pliku
-void StatusReader(const std::string &filename, long &gold, std::vector<Unit *> &PUnits, std::vector<Unit *> &EUnits,std::vector<Unit *> &Units)
+void StatusReader(const std::string &filename, long &gold, std::vector<Unit *> &PUnits, std::vector<Unit *> &EUnits, std::vector<Unit *> &Units)
 {
     std::ifstream fin(filename, std::ios::in);
 
@@ -120,37 +129,37 @@ void StatusReader(const std::string &filename, long &gold, std::vector<Unit *> &
     int x, y, hp, id;
     while (fin >> side >> type >> id >> x >> y >> hp)
     {
-            switch (type)
-            {
-            case 'K':
-                Units.push_back(new Unit(side, type, id, x, y, hp, '5' - 0, 5, 400, 1));
-                break;
-            case 'S':
-                Units.push_back(new Unit(side, type, id, x, y, hp, '3' - 0, 2, 250, 1));
-                break;
-            case 'A':
-                Units.push_back(new Unit(side, type, id, x, y, hp, '3' - 0, 2, 250, 5));
-                break;
-            case 'P':
-                Units.push_back(new Unit(side, type, id, x, y, hp, '3' - 0, 2, 200, 2));
-                break;
-            case 'R':
-                Units.push_back(new Unit(side, type, id, x, y, hp, '4' - 0, 2, 500, 1));
-                break;
-            case 'C':
-                Units.push_back(new Unit(side, type, id, x, y, hp, '6' - 0, 2, 800, 7));
-                break;
-            case 'W':
-                Units.push_back(new Unit(side, type, id, x, y, hp, '2' - 0, 2, 100, 1));
-                break;
-            case 'B':
-                fin >> build;
-                Units.push_back(new Unit(side, type, id, x, y, hp, build, 0, INT16_MAX, 0));
-                break;
-            default:
-                std::cerr << "Blad przy wyborze jednostki\n";
-                break;
-            }
+        switch (type)
+        {
+        case 'K':
+            Units.push_back(new Unit(side, type, id, x, y, hp, '5' - 0, 5, 400, 1));
+            break;
+        case 'S':
+            Units.push_back(new Unit(side, type, id, x, y, hp, '3' - 0, 2, 250, 1));
+            break;
+        case 'A':
+            Units.push_back(new Unit(side, type, id, x, y, hp, '3' - 0, 2, 250, 5));
+            break;
+        case 'P':
+            Units.push_back(new Unit(side, type, id, x, y, hp, '3' - 0, 2, 200, 2));
+            break;
+        case 'R':
+            Units.push_back(new Unit(side, type, id, x, y, hp, '4' - 0, 2, 500, 1));
+            break;
+        case 'C':
+            Units.push_back(new Unit(side, type, id, x, y, hp, '6' - 0, 2, 800, 7));
+            break;
+        case 'W':
+            Units.push_back(new Unit(side, type, id, x, y, hp, '2' - 0, 2, 100, 1));
+            break;
+        case 'B':
+            fin >> build;
+            Units.push_back(new Unit(side, type, id, x, y, hp, build, 0, INT16_MAX, 0));
+            break;
+        default:
+            std::cerr << "Blad przy wyborze jednostki\n";
+            break;
+        }
     }
     for (int i = 0; i < Units.size(); i++)
     {
@@ -162,7 +171,50 @@ void StatusReader(const std::string &filename, long &gold, std::vector<Unit *> &
 
     fin.clear();
 }
-void OrdersProcessor(const std::string &filename, std::vector<Unit *> &PUnits, std::vector<Unit *> &EUnits)
+void OrdersProcessor(const std::string &filename, std::vector<Unit *> &PUnits, std::vector<Unit *> &EUnits, std::vector<Unit *> &Units)
 {
-
+    std::ifstream fin;
+    fin.open(filename, std::ios::in);
+    if (!fin.is_open())
+    {
+        std::cerr << "Blad przy otwarciu pliku: " << filename << '\n';
+        fin.clear();
+        exit(EXIT_FAILURE);
+    }
+    char action, build;
+    int x, y, UnitA, UnitB;
+    while (fin >> UnitA >> action)
+    {
+        switch (action)
+        {
+        case 'M':
+            fin >> x >> y;
+            if(UnitFinder(Units, UnitA)->getS()=='B')
+            continue;
+            UnitFinder(Units, UnitA)->Move(*UnitFinder(Units, UnitA), x, y);
+            break;
+        case 'A':
+            fin >> UnitB;
+            if(UnitFinder(Units, UnitA)->getS()=='B'||UnitFinder(Units, UnitB)->getS()=='B')
+            continue;
+            UnitFinder(Units, UnitA)->Attack(*UnitFinder(Units, UnitA), *UnitFinder(Units, UnitB));
+            break;
+        case 'B':
+            fin >> build;
+            if(UnitFinder(Units, UnitA)->getS()!='B')
+            continue;
+            UnitFinder(Units, UnitA)->Build(*UnitFinder(Units, UnitA), build);
+            break;
+        break;
+        }
+    }
+}
+Unit *UnitFinder(std::vector<Unit *> &Units, int id)
+{
+    for (int i = 0; i < Units.size(); i++)
+    {
+        if (Units[i]->getID() == id)
+            return Units[i];
+    }
+    return nullptr;
 }

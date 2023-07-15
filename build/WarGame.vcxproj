@@ -306,6 +306,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="D:\WarGame\main.cpp" />
+    <ClCompile Include="D:\WarGame\player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="D:\WarGame\build\ZERO_CHECK.vcxproj">

@@ -1,5 +1,5 @@
-#ifndef PLAYER
-#define PLAYER
+#ifndef PLAYER_H
+#define PLAYER_H
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -10,7 +10,8 @@
 #include <map>
 
 // Struktura reprezentująca punkt na mapie gry
-struct Point {
+struct Point
+{
     int x;
     int y;
     int type;
@@ -24,12 +25,12 @@ private:
     char T; // Typ jednostki
     char B; // Czas budowy/Aktualnie budowana jednostka
     int ID; // Identyfikator
-    int X; // Współrzędna x
-    int Y; // Współrzędna y
-    int W; // Wytrzymałość
-    int P; // Prędkość
-    int K; // Koszt jednostki
-    int Z; // Zasięg ataku
+    int X;  // Współrzędna x
+    int Y;  // Współrzędna y
+    int W;  // Wytrzymałość
+    int P;  // Prędkość
+    int K;  // Koszt jednostki
+    int Z;  // Zasięg ataku
 public:
     // Konstruktor
     Unit(char s, char t, int id, int x, int y, int w, char b, int p, int k, int z) : S(s), T(t), ID(id), X(x), Y(y), W(w), B(b), P(p), K(k), Z(z) {}
@@ -45,9 +46,10 @@ public:
     int getP() const { return P; }
     int getK() const { return K; }
     int getZ() const { return Z; }
-    void Attack(Unit &Att,Unit &Def);
-    void Move();
-    void Build();
+    // Metody rozkazow zakladaja ze warunki do wykonania rozkazu sa spelnione
+    void Attack(Unit &Att, Unit &Def);
+    void Move(Unit &_U, int x, int y);
+    void Build(Unit &_U, char b);
     // Destruktor
     ~Unit() {}
 };

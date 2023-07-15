@@ -12,11 +12,11 @@ add_subdirectory(googletest)
 
 set(Headers player.h)
 
-set(Sources main.cpp)
+set(Sources main.cpp player.cpp)
 
 add_library(${This}_lib STATIC ${Sources} ${Headers})
 
-target_compile_definitions(${This}_lib PRIVATE ARGS="-mapa mapa.txt -status status.txt -rozkazy rozkazy.txt" )
+target_compile_options(${This}_lib PRIVATE -DARGS="-mapa mapa.txt -status status.txt -rozkazy rozkazy.txt")
 
 add_executable(${This} ${Sources})
 

@@ -268,9 +268,6 @@ WarGame_BINARY_DIR:STATIC=D:/WarGame/build
 //Value Computed by CMake
 WarGame_IS_TOP_LEVEL:STATIC=ON
 
-//Dependencies for the target
-WarGame_LIB_DEPENDS:STATIC=general;WarGame_lib;
-
 //Value Computed by CMake
 WarGame_SOURCE_DIR:STATIC=D:/WarGame
 
@@ -324,7 +321,7 @@ gtest_disable_pthreads:BOOL=OFF
 
 //Use shared (DLL) run-time lib even when Google Test is built
 // as static lib.
-gtest_force_shared_crt:BOOL=OFF
+gtest_force_shared_crt:BOOL=ON
 
 //Build gtest with internal symbols hidden in shared libraries.
 gtest_hide_internal_symbols:BOOL=OFF

@@ -258,6 +258,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="D:\WarGame\main.cpp" />
+    <ClCompile Include="D:\WarGame\player.cpp" />
     <ClInclude Include="D:\WarGame\player.h" />
   </ItemGroup>
   <ItemGroup>
