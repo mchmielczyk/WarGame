@@ -5,7 +5,7 @@
 		"commands" : [],
 		"files" : 
 		[
-			"googletest/googlemock/CMakeLists.txt"
+			"CMakeLists.txt"
 		],
 		"nodes" : 
 		[
@@ -17,13 +17,19 @@
 	"dependencies" : 
 	[
 		{
+			"id" : "WarGame_lib::@6890427a1f51a3e7e1df"
+		},
+		{
+			"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df"
+		},
+		{
+			"id" : "WarGame::@6890427a1f51a3e7e1df"
+		},
+		{
 			"id" : "gmock::@d68da25237a7ca2351af"
 		},
 		{
 			"id" : "gmock_main::@d68da25237a7ca2351af"
-		},
-		{
-			"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df"
 		},
 		{
 			"id" : "gtest::@f95b5c00bd49b3b4698d"
@@ -32,13 +38,13 @@
 			"id" : "gtest_main::@f95b5c00bd49b3b4698d"
 		}
 	],
-	"id" : "ALL_BUILD::@d68da25237a7ca2351af",
+	"id" : "ALL_BUILD::@6890427a1f51a3e7e1df",
 	"isGeneratorProvided" : true,
 	"name" : "ALL_BUILD",
 	"paths" : 
 	{
-		"build" : "googletest/googlemock",
-		"source" : "googletest/googlemock"
+		"build" : ".",
+		"source" : "."
 	},
 	"sources" : [],
 	"type" : "UTILITY"
