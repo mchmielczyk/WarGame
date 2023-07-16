@@ -2,10 +2,10 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "Release/WarGame.exe"
+			"path" : "MinSizeRel/WarGame.exe"
 		},
 		{
-			"path" : "Release/WarGame.pdb"
+			"path" : "MinSizeRel/WarGame.pdb"
 		}
 	],
 	"backtrace" : 1,
@@ -45,7 +45,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O2 /Ob2 /DNDEBUG"
+					"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O1 /Ob1 /DNDEBUG"
 				}
 			],
 			"language" : "CXX",
@@ -67,11 +67,11 @@
 	"dependencies" : 
 	[
 		{
-			"backtrace" : 2,
-			"id" : "WarGame_lib::@6890427a1f51a3e7e1df"
+			"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df"
 		},
 		{
-			"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df"
+			"backtrace" : 2,
+			"id" : "WarGame_lib::@6890427a1f51a3e7e1df"
 		}
 	],
 	"id" : "WarGame::@6890427a1f51a3e7e1df",
@@ -80,7 +80,7 @@
 		"commandFragments" : 
 		[
 			{
-				"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O2 /Ob2 /DNDEBUG",
+				"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O1 /Ob1 /DNDEBUG",
 				"role" : "flags"
 			},
 			{
@@ -89,7 +89,7 @@
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "Release\\WarGame_lib.lib",
+				"fragment" : "MinSizeRel\\WarGame_lib.lib",
 				"role" : "libraries"
 			},
 			{
