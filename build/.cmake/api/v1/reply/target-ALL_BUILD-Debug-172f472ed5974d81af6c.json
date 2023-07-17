@@ -17,13 +17,10 @@
 	"dependencies" : 
 	[
 		{
-			"id" : "gmock::@d68da25237a7ca2351af"
-		},
-		{
 			"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df"
 		},
 		{
-			"id" : "tests::@36f028580bb02cc8272a"
+			"id" : "gmock::@d68da25237a7ca2351af"
 		},
 		{
 			"id" : "gmock_main::@d68da25237a7ca2351af"
@@ -32,13 +29,16 @@
 			"id" : "gtest::@f95b5c00bd49b3b4698d"
 		},
 		{
-			"id" : "gtest_main::@f95b5c00bd49b3b4698d"
-		},
-		{
 			"id" : "WarGame_lib::@6890427a1f51a3e7e1df"
 		},
 		{
 			"id" : "WarGame::@6890427a1f51a3e7e1df"
+		},
+		{
+			"id" : "gtest_main::@f95b5c00bd49b3b4698d"
+		},
+		{
+			"id" : "tests::@36f028580bb02cc8272a"
 		}
 	],
 	"id" : "ALL_BUILD::@6890427a1f51a3e7e1df",

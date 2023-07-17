@@ -46,6 +46,10 @@ public:
     int getP() const { return P; }
     int getK() const { return K; }
     int getZ() const { return Z; }
+    void setB(char b) { B = b; }
+    void setX(int x) { X = x; }
+    void setY(int y) { Y = y; }
+    void setW(int w) { W = w; }
     // Metody rozkazow zakladaja ze warunki do wykonania rozkazu sa spelnione
     void Attack(Unit &Att, Unit &Def);
     void Move(Unit &_U, int x, int y);

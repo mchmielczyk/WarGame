@@ -1,11 +1,7 @@
-#include "player.h" // Dołączenie pliku nagłówkowego "player.h", który zawiera definicje jednostek
+#include "player.h" // Dołączenie pliku nagłówkowego "player.h", który zawiera definicje jednostek i funkcji
+// Metoda Attack atakuje jednostke _Def jednostka _Att
 void Unit::Attack(Unit &_Att, Unit &_Def)
 {
-    if (_Att.S == _Def.S)
-    {
-        std::cout << "Nie mozna zaatakowac jednostki o ID: " << _Def.ID << std::endl;
-        return;
-    }
     std::vector<std::vector<int>> AttackTable = {
         {35, 35, 35, 35, 35, 50, 35, 35},
         {30, 30, 30, 20, 20, 30, 30, 30},
@@ -41,6 +37,7 @@ void Unit::Attack(Unit &_Att, Unit &_Def)
         std::cout << "Nie mozna zaatakowac jednostki o ID: " << _Def.ID << std::endl;
     }
 }
+// Metoda Move przesuwa jednostke o ID _U o x w poziomie i y w pionie
 void Unit::Move(Unit &_U, int x, int y)
 {
     if (_U.P >= abs(_U.X - x) + abs(_U.Y - y))
@@ -53,6 +50,7 @@ void Unit::Move(Unit &_U, int x, int y)
         std::cout << "Nie mozna przesunac jednostki o ID: " << _U.ID << std::endl;
     }
 }
+// Metoda Build kolejkujaca budowe jednostki o ID _U
 void Unit::Build(Unit &_U, char b)
 {
     if (_U.B == '0')
