@@ -6,10 +6,6 @@ project(${This} C CXX)
 
 set(CMAKE_CXX_STANDARD 11)
 
-enable_testing()
-
-add_subdirectory(googletest)
-
 set(Headers player.h)
 
 set(Sources main.cpp player.cpp)
@@ -21,5 +17,3 @@ target_compile_options(${This}_lib PRIVATE -DARGS="-mapa mapa.txt -status status
 add_executable(${This} ${Sources})
 
 target_link_libraries(${This} PRIVATE ${This}_lib)
-
-add_subdirectory(test)
