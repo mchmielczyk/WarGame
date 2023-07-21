@@ -8,6 +8,7 @@
 #include <cstdlib>
 #include <climits>
 #include <map>
+#include <algorithm>
 
 // Struktura reprezentująca punkt na mapie gry
 struct Point
